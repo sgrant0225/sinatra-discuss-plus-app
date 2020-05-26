@@ -7,15 +7,15 @@ class UsersController < ApplicationController
   erb :'/signup'
  end 
 
- post '/signup' do
+ post '/users' do
    @new_user = User.new(params)
     if @new_user.save 
     session[:user_id] = @new_user.id 
-    binding.pry
-    redirect '/login'
+    redirect "/users/#{@new_user.id}"
+    
     #instead of login page redirect to a show page
     else
-      erb :'/signup'
+      redirect '/signup'
   end
  end
  
@@ -27,8 +27,22 @@ class UsersController < ApplicationController
    erb :'/login'
   end
 
-  # post 'login'
-
-  # end 
- 
+  post '/login' do
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password]) 
+      session[:user_id] = @user.id 
+      redirect "users/#{@user.id}"
+    else  
+      redirect '/login' 
+    end
+  end 
+  
+  get '/users/:id' do 
+   "This will be the user show route"
+   erb :'/users/show'
+  end 
+  
+  get '/logout' do
+   session.clear
+  end
 end    

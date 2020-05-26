@@ -8,4 +8,4 @@ use Rack::MethodOverride
 #mount of controllers with use here
 run ApplicationController
 use UsersController
-use SessionsController
+
