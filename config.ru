@@ -5,7 +5,8 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+
 #mount of controllers with use here
 run ApplicationController
 use UsersController
-
+use PostsController

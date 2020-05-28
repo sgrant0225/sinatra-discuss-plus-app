@@ -1,3 +1,5 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
  
 #users signup informtion will be stored here
@@ -32,17 +34,22 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password]) 
       session[:user_id] = @user.id 
       redirect "users/#{@user.id}"
-    else  
-      redirect '/login' 
+    else 
+      #flash[:notice] = "Error please try again!"
+      redirect '/login'
     end
   end 
   
   get '/users/:id' do 
    "This will be the user show route"
+   @user = User.find_by(id: params[:id])
    erb :'/users/show'
   end 
   
   get '/logout' do
    session.clear
+   redirect '/'
   end
+
+  
 end    

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<h1>All Post Discussions</h1>
+
+<% @posts.each do |get_post| %>
+  <a href='/posts/<%= get_post.id %>'>
+    <h3>Topic: <%= get_post.topic %></h3>
+    <p>Content: <%= get_post.content %> </p>
+    <p>Date: <%= get_post.date %> </p>
+  </a>
+  <%end%>
