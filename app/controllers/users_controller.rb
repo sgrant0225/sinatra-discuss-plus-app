@@ -25,7 +25,6 @@ class UsersController < ApplicationController
  #post request 1.Find the user #authenticate the user Redirect to the users landing show page
 
   get '/login' do
-   "THIS IS THE LOGIN PAGE"
    erb :'/login'
   end
 
@@ -35,8 +34,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id 
       redirect "users/#{@user.id}"
     else 
-      #flash[:notice] = "Error please try again!"
-      redirect '/login'
+      
+      erb :'error/login_error'
     end
   end 
   
