@@ -50,5 +50,12 @@ class UsersController < ApplicationController
    redirect '/'
   end
 
+  helpers do
+ 
+    def get_user
+    @user = User.find_by(id: params[:id])
+    @user_name = @user.name
+    end  
   
+ end
 end    

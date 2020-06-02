@@ -1,7 +1,12 @@
 <!DOCTYPE html>
  <html>
-  <head>
-   <h2> Welcome <%= @user.name || @new_user.name %>  </h2>
+ <div class"nav">
+ <a href="/logout">Logout</a>
+ </div><br>
+ 
+ <head>
+  <h2> Welcome <%= @user.name || @new_user.name %>  </h2>
+   <p> Email: <%= @user.email %> </p>
    </head>
    <body> 
    <div class="container">
@@ -9,7 +14,9 @@
      <p>To view all discussion, please click
      <input type="button" onclick="window.location.href='/posts'" value="Discussions"></p> 
      <p>To create a post, please click 
-     <input type="button" onclick="window.location.href='/posts/new'" value="Create Post">
+     <input type="button" onclick="window.location.href='/posts/new'" value="Create Post"></p>
+     <p> To view your post, please click
+     
      </p>
     </div>
 

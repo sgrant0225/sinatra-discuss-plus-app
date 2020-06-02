@@ -1,13 +1,17 @@
 class PostsController < ApplicationController
 
    get '/posts' do #index route action
-    @posts = PostDiscussion.all 
+      if !logged_in? 
+        redirect '/'
+      else
+      @posts = PostDiscussion.all 
     
-   erb :'/posts/index' #displays all articles
+      erb :'/posts/index' #displays all posts
+      end
    end 
 
    get '/posts/new' do
-   
+        
    erb :'/posts/new'
    end 
 
@@ -30,23 +34,28 @@ class PostsController < ApplicationController
    end 
    
    get '/posts/:id/edit' do #route to edit displays form to posts
-     @post = PostDiscussion.find_by(id: params[:id])
-    erb :'/posts/edit' 
+     if !logged_in? 
+      redirect '/'
+      else
+      @post = PostDiscussion.find_by(id: params[:id])
+      erb :'/posts/edit' 
    end
+  end
    
    patch '/posts/:id' do  #action handles the edit form submission
+      
     @post = PostDiscussion.find_by_id(params[:id]) 
     @post.topic = params[:topic]
     @post.content = params[:content]
     @post.date = params[:date]
     @post.save 
-    redirect to "/posts/#{@post.id}"
+    redirect "/posts/#{@post.id}"
    end
 
    delete '/posts/:id' do #delete action
     @post = PostDiscussion.find_by_id(params[:id])
     @post.delete
-    redirect to '/posts'
+    redirect '/posts'
   end
 end    
 

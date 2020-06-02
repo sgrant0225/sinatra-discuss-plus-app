@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<h1>All Post Discussions</h1>
+<html>
+<div
+ class="canva-embed"
+ data-design-id="DAD94BJhw48"
+ data-height-ratio="0.5625"
+ style="padding:56.2500% 5px 5px 5px;background:rgba(0,0,0,0.03);border-radius:8px;"
+></div>
+<script async src="https:&#x2F;&#x2F;sdk.canva.com&#x2F;v1&#x2F;embed.js"></script>
+
+
+<h1>Post Discussions</h1>
 
 <% @posts.each do |get_post| %>
-  <a href='/posts/<%= get_post.id %>'>
-    <h3>Topic: <%= get_post.topic %></h3>
+  <a href='/posts/<%= get_post.id %>'> </a>
+  <h3>Topic: <%= get_post.topic %></h3>
     <p>Content: <%= get_post.content %> </p>
     <p>Date: <%= get_post.date %> </p>
-  </a>
+  
   <%end%>
+  
+  </html>
