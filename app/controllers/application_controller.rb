@@ -16,15 +16,28 @@ class ApplicationController < Sinatra::Base
     erb :welcome
     end
   end
+
+   
+  get '/posts/' do
+    if current_user
+    redirect "/posts/#{@post.id}"
+    end
+  end
   
   helpers do 
-   def logged_in?
-    #!!current_user #true if user is logged in otherwise false
-    session.has_key?(:user_id)
-    end  
-   
-   def current_user 
-    @current_user ||= User.find(session[:user_id]) if logged_in?
-   end
-  end
+      def logged_in?
+        #!!current_user #true if user is logged in otherwise false
+        session.has_key?(:user_id)
+      end  
+      
+      def current_user 
+        @current_user ||= User.find(session[:user_id]) if logged_in?
+      end
+    end
+      
+
+      def authorized_to_edit?(post_discussion)
+        current_user == post_discussion.user
+    end
+
 end

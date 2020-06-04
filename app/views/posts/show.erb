@@ -5,24 +5,30 @@
    <body> 
    <div class="container">
      <div class="centered">
+     <h3> Topic: </h3>
      <%= @post.topic %><br><br>
 
      <%= @post.content %><br><br>
-
+         
      <%= @post.date %><br><br>
-     <p> To edit your post, please click
-     <input type="button" onclick="window.location.href='/posts/<%= @post.id %>/edit'" value="Edit Post"></p> 
+
      
-     <p>To view all discussion, please click
-     <input type="button" onclick="window.location.href='/posts'" value="Discussions"></p> 
+     <% if authorized_to_edit?(@post) %> 
+     
+     </p> <input type="button" onclick="window.location.href='/posts/<%= @post.id %>/edit'" value="Edit Post"></p> 
+    
+     <p> <input type="button" onclick="window.location.href='/posts'" value="Discussions"></p> 
      
      
      <form action="/posts/<%= @post.id %>" method="post">
      <input id="hidden" type="hidden" name="_method" value="delete">
-     <p> To delete your post, </p>
-    <input type="submit" value="delete">
+     
+     <p> <input type="submit" value="Delete"></p>
+    
     </form>
-     </p>
+    <% end %>
+    
+     
     </div>
     </body> 
 
