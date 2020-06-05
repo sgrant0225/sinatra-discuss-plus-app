@@ -11,8 +11,11 @@ class PostsController < ApplicationController
    end 
 
    get '/posts/new' do
-        
-   erb :'/posts/new'
+      if !logged_in?  
+        redirect '/'
+      else
+       erb :'/posts/new'
+      end
    end 
 
    post '/posts' do #creates a new post

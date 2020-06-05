@@ -1,15 +1,19 @@
 <!DOCTYPE html>
  <html>
   <head>
-   </head>
+  <div class"nav">
+    <a href="/logout">Logout</a>
+  </div><br>
+  
+  </head>
    <body> 
    <div class="container">
      <div class="centered">
      <h3> Topic: </h3>
      <%= @post.topic %><br><br>
-
+      <h3> Content: </h3>
      <%= @post.content %><br><br>
-         
+        <h3> Date: </h3>
      <%= @post.date %><br><br>
 
      
@@ -28,8 +32,6 @@
     </form>
     <% end %>
     
-     
-    </div>
     </body> 
 
 </html>
