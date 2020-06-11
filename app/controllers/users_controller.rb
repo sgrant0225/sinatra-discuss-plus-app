@@ -12,8 +12,8 @@ class UsersController < ApplicationController
  post '/users' do
    @new_user = User.new(params)
     if @new_user.save 
-    session[:user_id] = @new_user.id 
-    redirect "/users/#{@new_user.id}"
+     session[:user_id] = @new_user.id 
+     redirect "/users/#{@new_user.id}"
     
     #instead of login page redirect to a show page
     else
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   
   get '/users/:id' do 
     if !logged_in?
-   redirect '/'
+     redirect '/'
     else
    @user = User.find_by(id: params[:id])
    erb :'/users/show'
